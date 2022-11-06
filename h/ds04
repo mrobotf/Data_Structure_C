@@ -1,0 +1,32 @@
+对于采用A[m..n]组织的循环队列，试写一个统计队中数据元素个数的算法
+PROC count (ARRAY: A[m..n]; bottom, top, sum: integer);
+{统计循环队列长度，将长度赋给X, top 为顶端元素上方的位置} 
+BEGIN
+    IF bottom = top 
+        THEN x <- 0
+    ELSE IF top > bottom
+        THEN x <- top - bottom
+    ELSE IF top < bottom
+        THEN x <- n - m + 1 - (bottom - top)
+END
+
+5、试写一个采用辗转相除法来求解两个非负整数m、n的最大公约数的算法
+PROC gcd (m, n, num: integer;)
+{采用辗转相除法求解两个非负整数m、n的最大公约数}
+BEGIN
+    IF m < n
+        THEN m <-> n
+    IF n = 0
+        THEN [x <- m
+              return x; ]
+    WHILE (m MOD n != 0)[
+        x <- m MOD n
+        m <- n
+        n <- x
+    ]
+    x <- n
+END
+
+
+3、双栈共存的算法设计
+PROC double()

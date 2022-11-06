@@ -1,0 +1,27 @@
+TYPE  SQLIST = RECORD
+                elem: ARRAY[1..max]  OF  elemtp;
+                n:0..max
+            END;
+PROC minus(VAR C:SQLIST; A, B:SQLIST; i, j, k, s:integer);
+{把属于A，不属于B的元素放入C中}
+BEGIN
+    INITIATE(C);   i := 1;   j := 1;   k := 1;   s := 1;
+    IF A.n = 0
+        THEN INSERT(C, k, 0);
+    ELSE[ 
+        IF B.n = 0
+            THEN
+            FOR  i := 1  TO  A.n  DO
+                [INSERT(C, k, A[i]); k := k+1;]
+    ]
+
+    WHILE   i ≤ A.n    DO[
+        FOR  j := s  TO B.n  DO
+        [IF    A[i] = B[j]
+            THEN   [i := i+1;
+                IF   j = s   THEN   [s := s+1;   j := s]
+                ELSE    j := s;
+                break;]
+        ]
+        INSERT(C, k, A[i]); k := k+1; i := i+1;]
+END;
